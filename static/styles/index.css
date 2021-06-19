@@ -1,0 +1,28 @@
+table {
+  border: 1px solid #e2e0e0;
+  width: 500px;
+}
+tr:nth-child(odd) {
+  background-color: #c7c5c5;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.salvar {
+  padding: 5px;
+  border-radius: 5px;
+  float: right;
+  margin-top: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static',filename='styles/index.css') }}">
+  <title>Index</title>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="sub-container-1">
+    <h1>Lista de pessoas</h1>
+    <hr>
+    <table>
+      <tr>
+        <td>Nome</td>
+        <td>RG</td>
+        <td>Data de admissão</td>
+        <td></td>
+      </tr>
+      {% for pessoa in pessoas %}
+      <tr>
+        <td>{{ pessoa.nome.split(" ", 1)[0] }}</td>
+        <td>{{ pessoa.rg }}</td>
+        <td>{{ pessoa.data_admissao.strftime('%d/%m/%Y') }}</td>
+        <td>
+          <form method="post" action="{{ url_for('delete', id = pessoa.id_pessoa) }}" class="inline">
+            <button type="submit" name="excluir">
+              Excluir
+            </button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    
+  </div>
+    <div class="sub-container-2">
+    <h1>Cadastrar pessoa</h1>
+    <hr>
+    <form method="POST" action="{{ url_for('cadastrar') }}">
+      <table>
+        <tr>
+          <td>Nome:</td>
+          <td><input type="text" name="nome" required></td>
+        </tr>
+        <tr>
+          <td>RG:</td>
+          <td><input type="text" name="rg" required></td>
+        </tr>
+        <tr>
+          <td>CPF:</td>
+          <td><input type="text" name="cpf" required></td>
+        </tr>
+        <tr>
+          <td>Data nascimento:</td>
+          <td><input type="date" name="data_nascimento" required></td>
+        </tr>
+        <tr>
+          <td>Data admissão</td>
+          <td><input type="date" name="data_admissao" required></td>
+        </tr>
+        <tr>
+          <td>Funcao</td>
+          <td><input type="text" name="funcao"></td>
+        </tr>
+      </table>
+      <input type="submit" value="Cadastrar" class="salvar">
+    </form>
+  </div>
+  </div>
+</body>
+
+</html>
